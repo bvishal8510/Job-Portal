@@ -24,7 +24,7 @@ async function createJob(req, res) {
         await modelInst.createJob(job);
 
         return res.send({
-            "sucess":"Scuess"
+            "sucess":"Success"
         })
     }
     catch(err) {

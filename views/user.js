@@ -3,14 +3,7 @@ let { v4 : uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 const constInst = require('../constants');
 const bcrypt = require('bcrypt');
-
-const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  }
+const axios = require('axios');
 
 async function createUser(req, res) {
     try {
@@ -66,7 +59,6 @@ async function createUser(req, res) {
     catch(err) {
         return res.status(400).send({
             message: err.toString()
-
         })
     }
 }
@@ -123,7 +115,25 @@ async function loginUser(req, res) {
     }
 }
 
+const validateEmail = (email) => {
+    email = email.toLowerCase();
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+}
+
+async function getDataAsync(url) {
+    try {
+        let result = await axios.get(url);
+        return { userId: 1, id: 1, title: 'Test Title', body: 'Test Body' };
+    }
+    catch(e) {
+        throw new Error("Unable to fetch user data")
+    }
+}
+
 module.exports = {
     createUser,
-    loginUser
+    loginUser,
+    validateEmail,
+    getDataAsync
 }

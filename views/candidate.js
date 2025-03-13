@@ -41,7 +41,7 @@ async function applyJob(req, res) {
         // await mailInst.sendMail(req.email, recruiterRecord.email, jobId, jobRecord.title)
 
         return res.send({
-            "sucess":"Scuess"
+            "sucess":"Success"
         })
     }
     catch(err) {
@@ -87,7 +87,7 @@ async function getAppliedJobs(req, res) {
         }
 
         return res.send({
-            "sucess":"Scuess applied to",
+            "sucess":"Success applied to",
             "jobs": jobRecords
         })
     }

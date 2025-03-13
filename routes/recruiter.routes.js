@@ -8,5 +8,7 @@ let userMiddlewareInst = require('../middlewares/user.middleware');
 router.post("/createjob", userMiddlewareInst.verifyUserAndRole, userMiddlewareInst.verifyRecruiter, recruiterInst.createJob)
 router.get("/appliesonjob", userMiddlewareInst.verifyUserAndRole, userMiddlewareInst.verifyRecruiter, recruiterInst.getJobApplies)
 
+//create get all jobs here also
+
 // Exporting the router
 module.exports=router
